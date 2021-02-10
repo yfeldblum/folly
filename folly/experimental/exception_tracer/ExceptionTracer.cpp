@@ -20,8 +20,6 @@
 #include <exception>
 #include <iostream>
 
-#include <dlfcn.h>
-
 #include <glog/logging.h>
 
 #include <folly/CppAttributes.h>
@@ -32,6 +30,8 @@
 #include <folly/experimental/symbolizer/Symbolizer.h>
 
 #if FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
+
+#include <dlfcn.h>
 
 namespace {
 
@@ -66,7 +66,6 @@ void printExceptionInfo(
   }
   out << " (" << info.frames.size()
       << (info.frames.size() == 1 ? " frame" : " frames") << ")\n";
-#if FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
   try {
     size_t frameCount = info.frames.size();
 
@@ -93,7 +92,6 @@ void printExceptionInfo(
   } catch (...) {
     out << "\n !!! caught unexpected exception\n";
   }
-#endif
 }
 
 namespace {

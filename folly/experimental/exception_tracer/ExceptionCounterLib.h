@@ -21,6 +21,8 @@
 
 #include <folly/experimental/exception_tracer/ExceptionTracer.h>
 
+#if FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
+
 namespace folly {
 namespace exception_tracer {
 
@@ -41,3 +43,5 @@ std::ostream& operator<<(std::ostream& out, const ExceptionStats& stats);
 
 } // namespace exception_tracer
 } // namespace folly
+
+#endif // FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF

@@ -17,6 +17,8 @@
 #include <folly/experimental/exception_tracer/SmartExceptionTracer.h>
 #include <folly/portability/GTest.h>
 
+#if FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
+
 using namespace folly::exception_tracer;
 
 [[noreturn]] FOLLY_NOINLINE void testThrowException() {
@@ -88,3 +90,5 @@ TEST(SmartExceptionTracer, UnthrownException) {
       ss.str().find("Exception type: std::runtime_error (0 frames)") !=
       std::string::npos);
 }
+
+#endif // FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF

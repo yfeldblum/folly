@@ -27,6 +27,8 @@
 
 #include <folly/portability/GTest.h>
 
+#if FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
+
 using namespace folly;
 using namespace folly::symbolizer;
 
@@ -234,3 +236,5 @@ TEST(StackTraceTest, TerseFileAndLineStackTracePrinterOutput) {
 
   ASSERT_TRUE(match);
 }
+
+#endif // FOLLY_HAVE_ELF && FOLLY_HAVE_DWARF
